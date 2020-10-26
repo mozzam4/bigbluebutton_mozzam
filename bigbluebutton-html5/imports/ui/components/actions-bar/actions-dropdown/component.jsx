@@ -89,6 +89,7 @@ class ActionsDropdown extends PureComponent {
 
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
+    this.handleNotesClick = this.handleNotesClick.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -177,6 +178,30 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
+      (amIPresenter
+        ? (
+          <DropdownListItem
+            // data-test="uploadPresentation"
+            icon="presentation"
+            label={formatMessage(presentationDesc)}
+            // description={formatMessage(startTakingNotes)}
+            key={this.presentationItemId}
+            onClick={this.handleNotesClick}
+          />
+        )
+        : null),
+      (!amIPresenter
+        ? (
+          <DropdownListItem
+            // data-test="uploadPresentation"
+            icon="presentation"
+            label={formatMessage(presentationDesc)}
+            // description={formatMessage(startTakingNotes)}
+            key={this.presentationItemId}
+            onClick={this.handleNotesClick}
+          />
+        )
+        : null),
     ]);
   }
 
@@ -219,6 +244,10 @@ class ActionsDropdown extends PureComponent {
   handleExternalVideoClick() {
     const { mountModal } = this.props;
     mountModal(<ExternalVideoModal />);
+  }
+
+  handleNotesClick() {
+    alert('Message');
   }
 
   render() {
