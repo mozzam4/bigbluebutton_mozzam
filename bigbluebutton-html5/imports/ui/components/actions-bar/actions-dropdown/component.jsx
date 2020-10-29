@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
 import Button from '/imports/ui/components/button/component';
@@ -75,6 +75,10 @@ const intlMessages = defineMessages({
     id: 'app.actionsBar.actionsDropdown.stopShareExternalVideo',
     description: 'Stop sharing external video button',
   },
+  //showMeetingNotes: {
+  //  id: 'app.actionsBar.actionsDropdown.showMeetingNotes',
+  //  description: 'Show meeting notes',
+ // },
 });
 
 const handlePresentationClick = () => Session.set('showUploadPresentationView', true);
@@ -91,7 +95,16 @@ class ActionsDropdown extends PureComponent {
     this.makePresentationItems = this.makePresentationItems.bind(this);
     this.handleNotesClick = this.handleNotesClick.bind(this);
   }
-
+  //showFile = async (e) => {
+   // e.preventDefault()
+   // const reader = new FileReader()
+   // reader.onload = async (e) => { 
+    //  const text = (e.target.result)
+     // console.log(text)
+     // alert(text)
+   // };
+   // reader.readAsText(e.target.files[0])
+ // }
   componentDidUpdate(prevProps) {
     const { amIPresenter: wasPresenter } = prevProps;
     const { amIPresenter: isPresenter, mountModal } = this.props;
@@ -182,8 +195,8 @@ class ActionsDropdown extends PureComponent {
         ? (
           <DropdownListItem
             // data-test="uploadPresentation"
-            icon="presentation"
-            label={formatMessage(presentationDesc)}
+            icon="polling"
+            label="Show Meeting Notes"
             // description={formatMessage(startTakingNotes)}
             key={this.presentationItemId}
             onClick={this.handleNotesClick}
@@ -194,8 +207,8 @@ class ActionsDropdown extends PureComponent {
         ? (
           <DropdownListItem
             // data-test="uploadPresentation"
-            icon="presentation"
-            label={formatMessage(presentationDesc)}
+            icon="polling"
+            label="Show Meeting Notes"
             // description={formatMessage(startTakingNotes)}
             key={this.presentationItemId}
             onClick={this.handleNotesClick}
@@ -245,10 +258,16 @@ class ActionsDropdown extends PureComponent {
     const { mountModal } = this.props;
     mountModal(<ExternalVideoModal />);
   }
-
   handleNotesClick() {
-    alert('Message');
-  }
+fetch('final_output.txt', {mode : 'no-cors'}) 
+.then(response => response.text())
+.then(data => {
+  	alert(data);
+  	console.log(data);})
+.catch(error => console.error(error));    
+//alert('Message');
+//this.showFile() 
+}
 
   render() {
     const {
