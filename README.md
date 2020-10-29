@@ -18,3 +18,5 @@ You can install on a Ubuntu 16.04 64-bit server.  We provide [bbb-install.sh](ht
 For full technical documentation BigBlueButton -- including architecture, features, API, and GreenLight (the default front-end) -- see [https://docs.bigbluebutton.org/](https://docs.bigbluebutton.org/).
 
 BigBlueButton and the BigBlueButton Logo are trademarks of [BigBlueButton Inc](https://bigbluebutton.org) .
+
+This repository is cloned from BigBlueButton repository (https://github.com/bigbluebutton/bigbluebutton)  with some additional changes to frontend in html5/imports/ui/components/actions-bar/actions-dropdown/component.jsx. These changes were done as a part of Master Project to add taking meeting notes functionality.  
